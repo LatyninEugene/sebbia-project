@@ -13,7 +13,7 @@ public class TestPOST {
         Gson gson = new Gson();
         Map<String, String[]> map = new TreeMap<>();
         map.put("b1",new String[]{"q1","t1"});
-        map.put("b2",new String[]{"q2","t2","t2.1"});
+        map.put("b2",new String[]{"q2","t2"});
         map.put("b3",new String[]{"q3","t3","t3.1"});
         map.put("b4",new String[]{"q4","t4","все ок"});
         map.put("b5",new String[]{"q5","t5"});
@@ -33,7 +33,7 @@ public class TestPOST {
 
 
         CloseableHttpClient client = HttpClients.createDefault();
-        HttpPost post = new HttpPost("http://localhost:8080/upload");
+        HttpPost post = new HttpPost("https://sebbia-project.herokuapp.com/upload");
 
 //        // Create some NameValuePair for HttpPost parameters
 //        List<NameValuePair> arguments = new ArrayList<>(3);
