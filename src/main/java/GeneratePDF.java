@@ -28,8 +28,8 @@ public class GeneratePDF {
         int y = c.getY();
 
         PdfPTable table = new PdfPTable(x);
-        BaseFont bf = BaseFont.createFont("ariali.ttf", BaseFont.IDENTITY_H, BaseFont.EMBEDDED);
-        Chunk chunk = new Chunk(c.getName(), new Font(bf,18));
+        Font font = FontFactory.getFont(FontFactory.COURIER, 18, BaseColor.BLACK);
+        Chunk chunk = new Chunk(c.getName(), font);
         chunk.setLineHeight(12);
         document.add(chunk);
         document.setMargins(64,64,8,64);
@@ -45,9 +45,9 @@ public class GeneratePDF {
                         cell.setPadding(8);
                         cell.setPaddingTop(2);
                         String[] str = map.get(s);
-                        cell.addElement(new Phrase(str[0], new Font(bf,14)));
+                        cell.addElement(new Phrase(str[0], FontFactory.getFont(FontFactory.COURIER_BOLD,14)));
                         for (int v = 1; v < str.length; v++) {
-                            cell.addElement(new Phrase(str[v], new Font(bf,12)));
+                            cell.addElement(new Phrase(str[v]));
                         }
                         cell.setRowspan(pos[2]);
                         cell.setColspan(pos[3]);
@@ -59,6 +59,7 @@ public class GeneratePDF {
         document.add(table);
         document.close();
         return file;
+
     }
 
 }

@@ -36,7 +36,7 @@ public class PDFUpload extends HttpServlet {
                 mimetype = "application/octet-stream";
             }
             resp.setContentType(mimetype);
-            resp.setHeader("Access-Control-Allow-Origin","*");
+            resp.addHeader("Access-Control-Allow-Origin","*");
             resp.setContentLength((int)file.length());
             String fileName = (file.getName());
 
