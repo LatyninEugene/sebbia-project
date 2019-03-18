@@ -1,4 +1,5 @@
 import com.itextpdf.text.*;
+import com.itextpdf.text.pdf.BaseFont;
 import com.itextpdf.text.pdf.PdfPCell;
 import com.itextpdf.text.pdf.PdfPTable;
 import com.itextpdf.text.pdf.PdfWriter;
@@ -7,9 +8,12 @@ import java.io.File;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.net.URISyntaxException;
+import java.net.URL;
 import java.util.Map;
 
 public class GeneratePDF {
+
+
 
     public static File getPDF(String path,Canvas c) throws IOException, DocumentException, URISyntaxException {
         Document document = new Document();
@@ -24,8 +28,8 @@ public class GeneratePDF {
         int y = c.getY();
 
         PdfPTable table = new PdfPTable(x);
-        Font font = FontFactory.getFont(FontFactory.COURIER, 18, BaseColor.BLACK);
-        Chunk chunk = new Chunk(c.getName(), font);
+        BaseFont bf = BaseFont.createFont("ariali.ttf", BaseFont.IDENTITY_H, BaseFont.EMBEDDED);
+        Chunk chunk = new Chunk(c.getName(), new Font(bf,18));
         chunk.setLineHeight(12);
         document.add(chunk);
         document.setMargins(64,64,8,64);
@@ -41,9 +45,9 @@ public class GeneratePDF {
                         cell.setPadding(8);
                         cell.setPaddingTop(2);
                         String[] str = map.get(s);
-                        cell.addElement(new Phrase(str[0], FontFactory.getFont(FontFactory.COURIER_BOLD,14)));
+                        cell.addElement(new Phrase(str[0], new Font(bf,14)));
                         for (int v = 1; v < str.length; v++) {
-                            cell.addElement(new Phrase(str[v]));
+                            cell.addElement(new Phrase(str[v], new Font(bf,12)));
                         }
                         cell.setRowspan(pos[2]);
                         cell.setColspan(pos[3]);

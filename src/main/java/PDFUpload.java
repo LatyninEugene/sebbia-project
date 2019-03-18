@@ -19,6 +19,7 @@ public class PDFUpload extends HttpServlet {
         int length = 0;
         try {
             //TODO
+            req.setCharacterEncoding("utf-8");
             BufferedReader br = req.getReader();
             String json = br.readLine();
             System.out.println(json);
@@ -35,6 +36,7 @@ public class PDFUpload extends HttpServlet {
                 mimetype = "application/octet-stream";
             }
             resp.setContentType(mimetype);
+            resp.setHeader("Access-Control-Allow-Origin","*");
             resp.setContentLength((int)file.length());
             String fileName = (file.getName());
 

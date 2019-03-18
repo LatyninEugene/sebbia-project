@@ -15,7 +15,7 @@ public class TestPOST {
         map.put("b1",new String[]{"q1","t1"});
         map.put("b2",new String[]{"q2","t2","t2.1"});
         map.put("b3",new String[]{"q3","t3","t3.1"});
-        map.put("b4",new String[]{"q4","t4"});
+        map.put("b4",new String[]{"q4","t4","все ок"});
         map.put("b5",new String[]{"q5","t5"});
 
         Map<String, int[]> mapPos = new TreeMap<>();
@@ -45,7 +45,7 @@ public class TestPOST {
             StringEntity entity = new StringEntity(str);
             post.setEntity(entity);
             post.setHeader("Accept", "application/json");
-            post.setHeader("Content-type", "application/json");
+            post.setHeader("Content-type", "application/json; charset=utf-8");
             CloseableHttpResponse response = client.execute(post);
                 BufferedInputStream in = new BufferedInputStream(response.getEntity().getContent());
                 byte data[] = new byte[1024];
