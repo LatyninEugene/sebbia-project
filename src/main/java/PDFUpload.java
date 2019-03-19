@@ -15,11 +15,19 @@ public class PDFUpload extends HttpServlet {
     File file;
 
     @Override
+    protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+        req.setCharacterEncoding("UTF-8");
+        resp.setCharacterEncoding("Windows-1251");
+        resp.getWriter().write("все ок");
+        resp.getWriter().write(req.getParameter("type"));
+    }
+
+    @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         int length = 0;
         try {
             //TODO
-            req.setCharacterEncoding("utf-8");
+            req.setCharacterEncoding("Windows-1251");
             BufferedReader br = req.getReader();
             String json = br.readLine();
             System.out.println(json);
@@ -36,7 +44,6 @@ public class PDFUpload extends HttpServlet {
                 mimetype = "application/octet-stream";
             }
             resp.setContentType(mimetype);
-            resp.addHeader("Access-Control-Allow-Origin","*");
             resp.setContentLength((int)file.length());
             String fileName = (file.getName());
 
