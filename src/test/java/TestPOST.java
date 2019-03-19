@@ -10,28 +10,11 @@ import java.io.*;
 import java.util.*;
 
 public class TestPOST {
+
     public static void main(String[] args) {
         Gson gson = new Gson();
-        Map<String, String[]> map = new TreeMap<>();
-        map.put("b0",new String[]{"q1","t1"});
-        map.put("b2",new String[]{"q2","t2"});
-        map.put("b3",new String[]{"q3","t3","t3.1"});
-        map.put("b4",new String[]{"q4","t4","все ок"});
-        map.put("b5",new String[]{"q5","t5"});
 
-        Map<String, int[]> mapPos = new TreeMap<>();
-        mapPos.put("b0", new int[]{1,1,1,2});
-        mapPos.put("b2", new int[]{1,2,1,1});
-        mapPos.put("b3", new int[]{2,2,1,1});
-        mapPos.put("b4", new int[]{3,1,3,1});
-        mapPos.put("b5", new int[]{1,3,1,2});
-        int x = 3;
-        int y = 3;
-        Canvas c = new Canvas("canvas",map,mapPos,x,y);
-        String str = gson.toJson(c);
-
-
-
+        String str = gson.toJson(PDFUpload.getTestCanvas());
 
         CloseableHttpClient client = HttpClients.createDefault();
         HttpPost post = new HttpPost("http://localhost:8080/upload");
