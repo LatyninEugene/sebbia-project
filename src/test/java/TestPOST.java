@@ -15,6 +15,8 @@ public class TestPOST {
         Gson gson = new Gson();
 
         String str = gson.toJson(PDFUpload.getTestCanvas());
+        System.out.println(str);
+
 
         CloseableHttpClient client = HttpClients.createDefault();
         HttpPost post = new HttpPost("http://localhost:8080/upload");

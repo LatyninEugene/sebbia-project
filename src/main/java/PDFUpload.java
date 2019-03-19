@@ -24,13 +24,17 @@ public class PDFUpload extends HttpServlet {
         map.put("b3",new String[]{"q3","t3","t3.1"});
         map.put("b4",new String[]{"q4","t4","все ок"});
         map.put("b5",new String[]{"q5","t5"});
+        map.put("b6",new String[]{"q5","t5"});
+        map.put("b7",new String[]{"q5","t5"});
 
         Map<String, int[]> mapPos = new TreeMap<>();
-        mapPos.put("b0", new int[]{1,1,1,2});
-        mapPos.put("b2", new int[]{1,2,1,1});
-        mapPos.put("b3", new int[]{2,2,1,1});
-        mapPos.put("b4", new int[]{3,1,3,1});
-        mapPos.put("b5", new int[]{1,3,1,2});
+        mapPos.put("b0", new int[]{1,1,1,1});
+        mapPos.put("b2", new int[]{2,1,2,1});
+        mapPos.put("b3", new int[]{3,1,1,1});
+        mapPos.put("b4", new int[]{1,2,2,1});
+        mapPos.put("b5", new int[]{3,2,1,1});
+        mapPos.put("b6", new int[]{2,3,1,1});
+        mapPos.put("b7", new int[]{3,3,1,1});
         int x = 3;
         int y = 3;
         Canvas c = new Canvas("canvas",map,mapPos,x,y);
@@ -72,9 +76,6 @@ public class PDFUpload extends HttpServlet {
             System.out.println("erroro");
 
         }
-        resp.setCharacterEncoding("Windows-1251");
-        resp.getWriter().write("все ок");
-        resp.getWriter().write(req.getParameter("type"));
 
 
 

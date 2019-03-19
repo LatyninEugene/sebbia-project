@@ -2,7 +2,7 @@ import java.util.Map;
 
 public class Canvas {
     private String name;
-    private Map<String, String[]> bloks;
+    private Map<String, String[]> blocks;
     private Map<String, int[]> bloksPos;
     private int x;
     private int y;
@@ -10,15 +10,15 @@ public class Canvas {
 
     public Canvas() {
         name = "";
-        bloks = null;
+        blocks = null;
         bloksPos = null;
         x = 0;
         y = 0;
     }
 
-    public Canvas(String name, Map<String, String[]> bloks, Map<String, int[]> bloksPos, int x, int y) {
+    public Canvas(String name, Map<String, String[]> blocks, Map<String, int[]> bloksPos, int x, int y) {
         this.name = name;
-        this.bloks = bloks;
+        this.blocks = blocks;
         this.bloksPos =bloksPos;
         this.x = x;
         this.y = y;
@@ -33,11 +33,11 @@ public class Canvas {
     }
 
     public Map<String, String[]> getBloks() {
-        return bloks;
+        return blocks;
     }
 
-    public void setBloks(Map<String, String[]> bloks) {
-        this.bloks = bloks;
+    public void setBloks(Map<String, String[]> blocks) {
+        this.blocks = blocks;
     }
     public Map<String, int[]> getBloksPos() {
         return bloksPos;
@@ -66,7 +66,7 @@ public class Canvas {
     public String toString() {
         return "Canvas{" +
                 "name='" + name + '\'' +
-                ", bloks=" + bloks +
+                ", blocks=" + blocks +
                 '}';
     }
 }
