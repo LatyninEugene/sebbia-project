@@ -28,7 +28,7 @@ public class TestPOST {
 //        arguments.add(new BasicNameValuePair("lastName", "Administrator"));
 
         try {
-            StringEntity entity = new StringEntity(str,"Windows-1251");
+            StringEntity entity = new StringEntity(str,"utf-8");
 //            System.out.println(entity.getContentType().getValue());
 //            BufferedInputStream i = new BufferedInputStream(entity.getContent());
 //            byte d[] = new byte[1024];

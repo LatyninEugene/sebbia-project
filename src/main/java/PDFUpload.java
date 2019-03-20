@@ -54,7 +54,7 @@ public class PDFUpload extends HttpServlet {
 
             // sets response content type
             if (mimetype == null) {
-                mimetype = "application/octet-stream";
+                mimetype = "application/pdf";
             }
             resp.setContentType(mimetype);
             resp.setContentLength((int) file.length());
@@ -85,8 +85,7 @@ public class PDFUpload extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         try {
-            //TODO
-            req.setCharacterEncoding("Windows-1251");
+            req.setCharacterEncoding("utf-8");
             BufferedReader br = req.getReader();
             String json = br.readLine();
             System.out.println(json);
@@ -100,7 +99,7 @@ public class PDFUpload extends HttpServlet {
 
             // sets response content type
             if (mimetype == null) {
-                mimetype = "application/octet-stream";
+                mimetype = "application/pdf";
             }
             resp.setContentType(mimetype);
             resp.setContentLength((int)file.length());

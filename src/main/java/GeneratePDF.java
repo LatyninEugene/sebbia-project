@@ -48,7 +48,7 @@ public class GeneratePDF {
                             cell.setPadding(8);
                             cell.setPaddingTop(2);
                             String[] str = map.get(s);
-                            cell.addElement(new Phrase(str[0], new Font(bf,14)));
+                            cell.addElement(new Phrase(str[0], new Font(bf,14, Font.BOLD)));
                             for (int v = 1; v < str.length; v++) {
                                 cell.addElement(new Phrase(str[v], new Font(bf,12)));
                             }
