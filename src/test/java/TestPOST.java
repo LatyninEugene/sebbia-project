@@ -21,12 +21,6 @@ public class TestPOST {
         CloseableHttpClient client = HttpClients.createDefault();
         HttpPost post = new HttpPost("http://localhost:8080/upload");
 
-//        // Create some NameValuePair for HttpPost parameters
-//        List<NameValuePair> arguments = new ArrayList<>(3);
-//        arguments.add(new BasicNameValuePair("username", "admin"));
-//        arguments.add(new BasicNameValuePair("firstName", "System"));
-//        arguments.add(new BasicNameValuePair("lastName", "Administrator"));
-
         try {
             StringEntity entity = new StringEntity(str,"utf-8");
 //            System.out.println(entity.getContentType().getValue());
@@ -34,7 +28,7 @@ public class TestPOST {
 //            byte d[] = new byte[1024];
 //            i.read(d,0,1024);
 //            System.out.write(d,0,1024);
-            entity.setContentType("charset=Windows-1251");
+            //entity.setContentType("charset=Windows-1251");
             post.addHeader("charset","Windows-1251");
             post.setEntity(entity);
             System.out.println(post.getEntity().getContentType().getValue());

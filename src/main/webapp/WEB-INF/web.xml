@@ -15,6 +15,17 @@
         <filter-name>SimpleCorsFilter</filter-name>
         <url-pattern>/upload</url-pattern>
     </filter-mapping>
+    <filter-mapping>
+        <filter-name>SimpleCorsFilter</filter-name>
+        <url-pattern>/getUsersList</url-pattern>
+    </filter-mapping>
+    <filter-mapping>
+        <filter-name>SimpleCorsFilter</filter-name>
+        <url-pattern>/getCanvas</url-pattern>
+    </filter-mapping>
+
+
+
 
     <servlet>
         <servlet-name>pdfServlet</servlet-name>
@@ -23,6 +34,24 @@
     <servlet-mapping>
         <servlet-name>pdfServlet</servlet-name>
         <url-pattern>/upload</url-pattern>
+    </servlet-mapping>
+
+    <servlet>
+        <servlet-name>getUsersList</servlet-name>
+        <servlet-class>GetUserList</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>getUsersList</servlet-name>
+        <url-pattern>/getUsersList</url-pattern>
+    </servlet-mapping>
+
+    <servlet>
+        <servlet-name>getCanvas</servlet-name>
+        <servlet-class>GetCanvas</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>getCanvas</servlet-name>
+        <url-pattern>/getCanvas</url-pattern>
     </servlet-mapping>
 
 
