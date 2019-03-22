@@ -15,30 +15,13 @@ import java.util.TreeMap;
 
 public class GetUserList extends HttpServlet {
 
-    private int id;
-    private boolean isValid(String login, String pass){
-        try(Connection con = JDBCUtil.getConnection()){
-            PreparedStatement ps = con.prepareStatement("SELECT * FROM \"User\" WHERE login=? and password=?");
-            ps.setString(1,login);
-            ps.setString(2, pass);
-            ResultSet resultSet = ps.executeQuery();
-            while (resultSet.next()){
-                id = resultSet.getInt("id");
-                System.out.println(resultSet.getString("login"));
-                return true;
-            }
-        } catch (SQLException | ClassNotFoundException e) {
-            e.printStackTrace();
-        }
-        return false;
-    }
-
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         String login = req.getParameter("login");
         String password = req.getParameter("password");
         Map<Integer,String> canName = new TreeMap<>();
-        if(!isValid(login,password)){throw new ServletException();}
+        int id = CheckValid.isValid(login,password);
+        if(id == -1){throw new ServletException();}
         try(Connection con = JDBCUtil.getConnection()){
             PreparedStatement ps = con.prepareStatement("SELECT * FROM \"Canvas\" WHERE id_user=?");
             ps.setInt(1,id);

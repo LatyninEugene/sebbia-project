@@ -1,4 +1,5 @@
 import java.util.Map;
+import java.util.TreeMap;
 
 public class Canvas {
     private String name;
@@ -10,8 +11,8 @@ public class Canvas {
 
     public Canvas() {
         name = "";
-        blocks = null;
-        bloksPos = null;
+        blocks = new TreeMap<>();
+        bloksPos = new TreeMap<>();
         x = 0;
         y = 0;
     }
