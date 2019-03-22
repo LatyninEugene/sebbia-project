@@ -1,7 +1,6 @@
 import com.google.gson.Gson;
 import org.apache.http.HttpEntity;
 import org.apache.http.NameValuePair;
-import org.apache.http.client.ClientProtocolException;
 import org.apache.http.client.entity.UrlEncodedFormEntity;
 import org.apache.http.client.methods.CloseableHttpResponse;
 import org.apache.http.client.methods.HttpPost;
@@ -9,9 +8,9 @@ import org.apache.http.impl.client.CloseableHttpClient;
 import org.apache.http.impl.client.HttpClients;
 import org.apache.http.message.BasicNameValuePair;
 import org.apache.http.util.EntityUtils;
+import servlets.PDFUpload;
 
 import java.io.BufferedInputStream;
-import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -41,7 +40,7 @@ public class SendPost {
             client.close();
             System.out.println();
             return true;
-        } catch (IOException e) {
+        } catch (Exception e) {
             e.printStackTrace();
             return false;
         }
@@ -55,7 +54,7 @@ public class SendPost {
         return sendPost(arguments, "http://localhost:8080/getUsersList");
     }
     private static boolean getCanvas(){
-        System.out.println("\nCanvas:");
+        System.out.println("\nmodel.Canvas:");
         List<NameValuePair> arguments = new ArrayList<>(1);
         arguments.add(new BasicNameValuePair("id", "1"));
         return sendPost(arguments, "http://localhost:8080/getCanvas");

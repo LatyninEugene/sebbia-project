@@ -8,7 +8,7 @@
 
     <filter>
         <filter-name>SimpleCorsFilter</filter-name>
-        <filter-class>SimpleCORSFilter</filter-class>
+        <filter-class>model.SimpleCORSFilter</filter-class>
     </filter>
 
     <filter-mapping>
@@ -31,13 +31,17 @@
         <filter-name>SimpleCorsFilter</filter-name>
         <url-pattern>/createUser</url-pattern>
     </filter-mapping>
+    <filter-mapping>
+        <filter-name>SimpleCorsFilter</filter-name>
+        <url-pattern>/updateCanvas</url-pattern>
+    </filter-mapping>
 
 
 
 
     <servlet>
         <servlet-name>pdfServlet</servlet-name>
-        <servlet-class>PDFUpload</servlet-class>
+        <servlet-class>servlets.PDFUpload</servlet-class>
     </servlet>
     <servlet-mapping>
         <servlet-name>pdfServlet</servlet-name>
@@ -46,7 +50,7 @@
 
     <servlet>
         <servlet-name>getUsersList</servlet-name>
-        <servlet-class>GetUserList</servlet-class>
+        <servlet-class>servlets.GetUserList</servlet-class>
     </servlet>
     <servlet-mapping>
         <servlet-name>getUsersList</servlet-name>
@@ -55,7 +59,7 @@
 
     <servlet>
         <servlet-name>getCanvas</servlet-name>
-        <servlet-class>GetCanvas</servlet-class>
+        <servlet-class>servlets.GetCanvas</servlet-class>
     </servlet>
     <servlet-mapping>
         <servlet-name>getCanvas</servlet-name>
@@ -64,7 +68,7 @@
 
     <servlet>
         <servlet-name>createCanvas</servlet-name>
-        <servlet-class>CreateCanvas</servlet-class>
+        <servlet-class>servlets.CreateCanvas</servlet-class>
     </servlet>
     <servlet-mapping>
         <servlet-name>createCanvas</servlet-name>
@@ -73,7 +77,7 @@
 
     <servlet>
         <servlet-name>createUser</servlet-name>
-        <servlet-class>CreateUser</servlet-class>
+        <servlet-class>servlets.CreateUser</servlet-class>
     </servlet>
     <servlet-mapping>
         <servlet-name>createUser</servlet-name>
@@ -82,7 +86,7 @@
 
     <servlet>
         <servlet-name>updateCanvas</servlet-name>
-        <servlet-class>CanvasUpdate</servlet-class>
+        <servlet-class>servlets.CanvasUpdate</servlet-class>
     </servlet>
     <servlet-mapping>
         <servlet-name>updateCanvas</servlet-name>
