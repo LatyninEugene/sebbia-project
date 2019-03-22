@@ -16,9 +16,10 @@ import java.util.List;
 
 public class SendPost {
     public static void main(String[] args) {
+        //System.out.println(createUser());
+        //System.out.println(createCanvas());
         System.out.println(getUsersList());
         System.out.println(getCanvas());
-        //System.out.println(createCanvas());
     }
     private static boolean sendPost(List<NameValuePair> arg, String url){
         try {
@@ -64,5 +65,12 @@ public class SendPost {
         arguments.add(new BasicNameValuePair("password", "admin"));
         arguments.add(new BasicNameValuePair("name", "newCanvas"));
         return sendPost(arguments, "http://localhost:8080/createCanvas");
+    }
+    private static boolean createUser(){
+        System.out.println("\ncreateUser:");
+        List<NameValuePair> arguments = new ArrayList<>(2);
+        arguments.add(new BasicNameValuePair("login", "admin"));
+        arguments.add(new BasicNameValuePair("password", "admin"));
+        return sendPost(arguments, "http://localhost:8080/createUser");
     }
 }

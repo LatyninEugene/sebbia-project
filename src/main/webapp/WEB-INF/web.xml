@@ -23,10 +23,13 @@
         <filter-name>SimpleCorsFilter</filter-name>
         <url-pattern>/getCanvas</url-pattern>
     </filter-mapping>
-
     <filter-mapping>
         <filter-name>SimpleCorsFilter</filter-name>
         <url-pattern>/createCanvas</url-pattern>
+    </filter-mapping>
+    <filter-mapping>
+        <filter-name>SimpleCorsFilter</filter-name>
+        <url-pattern>/createUser</url-pattern>
     </filter-mapping>
 
 
@@ -66,6 +69,14 @@
     <servlet-mapping>
         <servlet-name>createCanvas</servlet-name>
         <url-pattern>/createCanvas</url-pattern>
+    </servlet-mapping>
+    <servlet>
+        <servlet-name>createUser</servlet-name>
+        <servlet-class>CreateUser</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>createUser</servlet-name>
+        <url-pattern>/createUser</url-pattern>
     </servlet-mapping>
 
 </web-app>
