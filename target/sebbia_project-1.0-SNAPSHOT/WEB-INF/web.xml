@@ -70,6 +70,7 @@
         <servlet-name>createCanvas</servlet-name>
         <url-pattern>/createCanvas</url-pattern>
     </servlet-mapping>
+
     <servlet>
         <servlet-name>createUser</servlet-name>
         <servlet-class>CreateUser</servlet-class>
@@ -77,6 +78,15 @@
     <servlet-mapping>
         <servlet-name>createUser</servlet-name>
         <url-pattern>/createUser</url-pattern>
+    </servlet-mapping>
+
+    <servlet>
+        <servlet-name>updateCanvas</servlet-name>
+        <servlet-class>CanvasUpdate</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>updateCanvas</servlet-name>
+        <url-pattern>/updateCanvas</url-pattern>
     </servlet-mapping>
 
 </web-app>

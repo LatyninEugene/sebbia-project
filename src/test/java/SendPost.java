@@ -1,3 +1,4 @@
+import com.google.gson.Gson;
 import org.apache.http.HttpEntity;
 import org.apache.http.NameValuePair;
 import org.apache.http.client.ClientProtocolException;
@@ -19,6 +20,7 @@ public class SendPost {
         //System.out.println(createUser());
         //System.out.println(createCanvas());
         System.out.println(getUsersList());
+        System.out.println(updateCanvas());
         System.out.println(getCanvas());
     }
     private static boolean sendPost(List<NameValuePair> arg, String url){
@@ -72,5 +74,15 @@ public class SendPost {
         arguments.add(new BasicNameValuePair("login", "admin"));
         arguments.add(new BasicNameValuePair("password", "admin"));
         return sendPost(arguments, "http://localhost:8080/createUser");
+    }
+    private static boolean updateCanvas(){
+        System.out.println("\nupdateCanvas:");
+        List<NameValuePair> arguments = new ArrayList<>(5);
+        arguments.add(new BasicNameValuePair("login", "admin"));
+        arguments.add(new BasicNameValuePair("password", "admin"));
+        arguments.add(new BasicNameValuePair("id", "2"));
+        arguments.add(new BasicNameValuePair("name", "Новый Канвас"));
+        arguments.add(new BasicNameValuePair("json", new Gson().toJson(PDFUpload.getTestCanvas())));
+        return sendPost(arguments, "http://localhost:8080/updateCanvas");
     }
 }
