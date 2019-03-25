@@ -16,11 +16,11 @@ import java.util.List;
 
 public class SendPost {
     public static void main(String[] args) {
-        //System.out.println(createUser());
-        //System.out.println(createCanvas());
+//        System.out.println(createUser());
+//        System.out.println(createCanvas());
         System.out.println(getUsersList());
-        System.out.println(updateCanvas());
-        System.out.println(getCanvas());
+//        System.out.println(updateCanvas());
+//        System.out.println(getCanvas());
     }
     private static boolean sendPost(List<NameValuePair> arg, String url){
         try {
