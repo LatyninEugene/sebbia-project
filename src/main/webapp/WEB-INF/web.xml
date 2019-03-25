@@ -35,6 +35,10 @@
         <filter-name>SimpleCorsFilter</filter-name>
         <url-pattern>/updateCanvas</url-pattern>
     </filter-mapping>
+    <filter-mapping>
+        <filter-name>SimpleCorsFilter</filter-name>
+        <url-pattern>/checkValid</url-pattern>
+    </filter-mapping>
 
 
 
@@ -93,4 +97,12 @@
         <url-pattern>/updateCanvas</url-pattern>
     </servlet-mapping>
 
+    <servlet>
+        <servlet-name>checkValid</servlet-name>
+        <servlet-class>servlets.CheckValid</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>checkValid</servlet-name>
+        <url-pattern>/checkValid</url-pattern>
+    </servlet-mapping>
 </web-app>

@@ -18,9 +18,10 @@ public class SendPost {
     public static void main(String[] args) {
 //        System.out.println(createUser());
 //        System.out.println(createCanvas());
-        System.out.println(getUsersList());
+//        System.out.println(getUsersList());
 //        System.out.println(updateCanvas());
 //        System.out.println(getCanvas());
+        System.out.println(checkValid());
     }
     private static boolean sendPost(List<NameValuePair> arg, String url){
         try {
@@ -58,6 +59,13 @@ public class SendPost {
         List<NameValuePair> arguments = new ArrayList<>(1);
         arguments.add(new BasicNameValuePair("id", "1"));
         return sendPost(arguments, "http://localhost:8080/getCanvas");
+    }
+    private static boolean checkValid(){
+        System.out.println("\nuserId:");
+        List<NameValuePair> arguments = new ArrayList<>(2);
+        arguments.add(new BasicNameValuePair("login", "admin"));
+        arguments.add(new BasicNameValuePair("password", "admin"));
+        return sendPost(arguments, "http://localhost:8080/checkValid");
     }
     private static boolean createCanvas(){
         System.out.println("\ncreateCanvas:");

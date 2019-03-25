@@ -1,0 +1,12 @@
+controlers\JDBCUtil.class
+servlets\CanvasUpdate.class
+servlets\PDFUpload.class
+servlets\CreateUser.class
+servlets\GetCanvas.class
+servlets\CreateCanvas.class
+controlers\GeneratePDF.class
+model\SimpleCORSFilter.class
+model\Canvas.class
+controlers\CheckValid.class
+servlets\GetUserList.class
+model\User.class
