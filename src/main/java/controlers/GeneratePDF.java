@@ -20,10 +20,9 @@ public class GeneratePDF {
     public static File getPDF(String path, Canvas c) throws IOException, DocumentException, URISyntaxException {
         File file = new File(path);
         try {
-            BaseFont bf = BaseFont.createFont(GeneratePDF.class.getResource("ariali.ttf").toString(),"windows-1251", BaseFont.EMBEDDED);
+            BaseFont bf = BaseFont.createFont(GeneratePDF.class.getResource("../ariali.ttf").toString(),"windows-1251", BaseFont.EMBEDDED);
             Document document = new Document();
             document.setPageSize(PageSize.A4.rotate());
-            file = new File(path);
             PdfWriter.getInstance(document, new FileOutputStream(file));
             document.open();
 

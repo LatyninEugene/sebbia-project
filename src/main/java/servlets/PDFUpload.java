@@ -25,7 +25,7 @@ public class PDFUpload extends HttpServlet {
         Map<String, String[]> map = new TreeMap<>();
         map.put("b0",new String[]{"q1","t1"});
         map.put("b2",new String[]{"q2","t2"});
-        map.put("b3",new String[]{"q3","t3","t3.1"});
+        map.put("b3",new String[]{"q3","t3","таск 3.1"});
         map.put("b4",new String[]{"q4","t4","все ок"});
         map.put("b5",new String[]{"q5","t5"});
         map.put("b6",new String[]{"q5","t5"});
@@ -47,8 +47,6 @@ public class PDFUpload extends HttpServlet {
 
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-
-        req.setCharacterEncoding("Windows-1251");
         try {
             file = GeneratePDF.getPDF(getTestCanvas().getName() + ".pdf", getTestCanvas());
 
@@ -81,19 +79,13 @@ public class PDFUpload extends HttpServlet {
 
         }
 
-
-
-
     }
 
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         try {
-            req.setCharacterEncoding("utf-8");
-            BufferedReader br = req.getReader();
-            String json = br.readLine();
-            System.out.println(json);
-            br.close();
+            String json = req.getParameter("json");
+            System.out.println("Main:"+json);
             Canvas can = new Gson().fromJson(json, Canvas.class);
             file  = GeneratePDF.getPDF(can.getName()+".pdf",can);
 
