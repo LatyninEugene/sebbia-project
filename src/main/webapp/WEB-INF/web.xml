@@ -39,6 +39,10 @@
         <filter-name>SimpleCorsFilter</filter-name>
         <url-pattern>/checkValid</url-pattern>
     </filter-mapping>
+    <filter-mapping>
+        <filter-name>SimpleCorsFilter</filter-name>
+        <url-pattern>/deleteCanvas</url-pattern>
+    </filter-mapping>
 
 
 
@@ -104,5 +108,14 @@
     <servlet-mapping>
         <servlet-name>checkValid</servlet-name>
         <url-pattern>/checkValid</url-pattern>
+    </servlet-mapping>
+
+    <servlet>
+        <servlet-name>deleteCanvas</servlet-name>
+        <servlet-class>servlets.DeleteCanvas</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>deleteCanvas</servlet-name>
+        <url-pattern>/deleteCanvas</url-pattern>
     </servlet-mapping>
 </web-app>

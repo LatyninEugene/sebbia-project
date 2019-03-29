@@ -25,9 +25,9 @@ public class PDFUpload extends HttpServlet {
         Map<String, String[]> map = new TreeMap<>();
         map.put("b0",new String[]{"q1","t1"});
         map.put("b2",new String[]{"q2","t2"});
-        map.put("b3",new String[]{"q3","t3","таск 3.1"});
+        map.put("b3",new String[]{"q3","t3","task 3.1"});
         map.put("b4",new String[]{"q4","t4","все ок"});
-        map.put("b5",new String[]{"q5","t5"});
+        map.put("b5",new String[]{"q5","t5 \n t4 в 5"});
         map.put("b6",new String[]{"q5","t5"});
         map.put("b7",new String[]{"q5","t5"});
 

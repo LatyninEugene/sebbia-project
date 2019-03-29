@@ -22,6 +22,7 @@ public class TestPOST {
         System.out.println("TEST:"+str);
 
         CloseableHttpClient client = HttpClients.createDefault();
+//        HttpPost post = new HttpPost("https://sebbia-project.herokuapp.com/upload");
         HttpPost post = new HttpPost("http://localhost:8080/upload");
 
         try {
