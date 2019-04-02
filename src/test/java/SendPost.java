@@ -74,7 +74,7 @@ public class SendPost {
         arguments.add(new BasicNameValuePair("login", "admin"));
         arguments.add(new BasicNameValuePair("password", "admin"));
         arguments.add(new BasicNameValuePair("name", "newCanvas"));
-        return sendPost(arguments, "http://localhost:8080/createCanvas");
+        return sendPost(arguments, "https://sebbia-project.herokuapp.com/createCanvas");
     }
 //    private static boolean createUser(){
 //        System.out.println("\ncreateUser:");
@@ -94,12 +94,12 @@ public class SendPost {
 //        return sendPost(arguments, "http://localhost:8080/updateCanvas");
 //    }
 
-//    private static boolean testDelete(){
-//        System.out.println("\ntestDelete:");
-//        List<NameValuePair> arguments = new ArrayList<>(3);
-//        arguments.add(new BasicNameValuePair("id", "2"));
-//        arguments.add(new BasicNameValuePair("login", "admin"));
-//        arguments.add(new BasicNameValuePair("password", "admin"));
-//        return sendPost(arguments, "http://localhost:8080/deleteCanvas");
-//    }
+    private static boolean testDelete(){
+        System.out.println("\ntestDelete:");
+        List<NameValuePair> arguments = new ArrayList<>(3);
+        arguments.add(new BasicNameValuePair("id", "13"));
+        arguments.add(new BasicNameValuePair("login", "admin"));
+        arguments.add(new BasicNameValuePair("password", "admin"));
+        return sendPost(arguments, "https://sebbia-project.herokuapp.com/deleteCanvas");
+    }
 }
