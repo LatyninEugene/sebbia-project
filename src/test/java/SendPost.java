@@ -73,8 +73,9 @@ public class SendPost {
         List<NameValuePair> arguments = new ArrayList<>(3);
         arguments.add(new BasicNameValuePair("login", "admin"));
         arguments.add(new BasicNameValuePair("password", "admin"));
-        arguments.add(new BasicNameValuePair("name", "newCanvas"));
-        return sendPost(arguments, "https://sebbia-project.herokuapp.com/createCanvas");
+        arguments.add(new BasicNameValuePair("name", "Тест"));
+        arguments.add(new BasicNameValuePair("type", "1"));
+        return sendPost(arguments, "http://localhost:8080/createCanvas");
     }
 //    private static boolean createUser(){
 //        System.out.println("\ncreateUser:");
