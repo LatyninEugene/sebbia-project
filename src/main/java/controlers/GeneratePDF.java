@@ -50,7 +50,7 @@ public class GeneratePDF {
                             cell.setPaddingTop(2);
                             String[] str = map.get(s);
                             cell.addElement(new Phrase(str[0], new Font(bf,14, Font.BOLD)));
-                            cell.addElement(new Phrase(str[3], new Font(bf,12)));
+                            cell.addElement(new Phrase(str[2], new Font(bf,12)));
                             cell.setRowspan(pos[2]);
                             cell.setColspan(pos[3]);
                             table.addCell(cell);
