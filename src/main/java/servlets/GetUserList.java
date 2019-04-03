@@ -34,19 +34,14 @@ public class GetUserList extends HttpServlet {
     }
 
     @Override
-    @Deprecated
-    protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        int id = Integer.parseInt(req.getParameter("id"));
-        if(id == -1){throw new ServletException();}
-        getCanvasList(req, resp, id);
-    }
-
-    @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         String login = req.getParameter("login");
         String password = req.getParameter("password");
         int id = CheckValid.isValid(login,password);
         if(id == -1){throw new ServletException();}
-        getCanvasList(req, resp, id);
+        if (CheckValid.getType(id)==2){
+            int id_user = Integer.parseInt(req.getParameter("id"));
+            getCanvasList(req, resp, id_user);
+        }else getCanvasList(req, resp, id);
     }
 }

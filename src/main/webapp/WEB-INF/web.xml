@@ -43,6 +43,10 @@
         <filter-name>SimpleCorsFilter</filter-name>
         <url-pattern>/deleteCanvas</url-pattern>
     </filter-mapping>
+    <filter-mapping>
+        <filter-name>SimpleCorsFilter</filter-name>
+        <url-pattern>/getUsers</url-pattern>
+    </filter-mapping>
 
 
 
@@ -117,5 +121,14 @@
     <servlet-mapping>
         <servlet-name>deleteCanvas</servlet-name>
         <url-pattern>/deleteCanvas</url-pattern>
+    </servlet-mapping>
+
+    <servlet>
+        <servlet-name>getUsers</servlet-name>
+        <servlet-class>servlets.GetUsers</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>getUsers</servlet-name>
+        <url-pattern>/getUsers</url-pattern>
     </servlet-mapping>
 </web-app>

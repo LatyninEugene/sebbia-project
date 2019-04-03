@@ -25,10 +25,11 @@ public class CanvasUpdate extends HttpServlet {
         if(id == -1){throw new ServletException();}
 
         try(Connection con = JDBCUtil.getConnection()){
-            PreparedStatement ps = con.prepareStatement("UPDATE \"Canvas\" SET name=?,text=? WHERE id=?");
+            PreparedStatement ps = con.prepareStatement("UPDATE \"Canvas\" SET name=?,text=? WHERE id=? and id_user=?");
             ps.setString(1,name);
             ps.setString(2,json);
             ps.setInt(3,id_can);
+            ps.setInt(4,id);
             ps.executeUpdate();
         } catch (SQLException | ClassNotFoundException e) {
             throw new ServletException();

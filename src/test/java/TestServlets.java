@@ -46,7 +46,8 @@ public class TestServlets {
             i.read(b,0,12);
             String str = new String(b);
             str = str.trim();
-            Assert.assertEquals(str,"1");
+            System.out.println(str);
+            Assert.assertEquals(str,"1 2");
         } catch (IOException e) {
             e.printStackTrace();
             Assert.fail("Validation error");
@@ -55,8 +56,8 @@ public class TestServlets {
     @Test
     public void getUsersList(){
         List<NameValuePair> arguments = new ArrayList<>(2);
-        arguments.add(new BasicNameValuePair("login", "admin"));
-        arguments.add(new BasicNameValuePair("password", "admin"));
+        arguments.add(new BasicNameValuePair("login", "4"));
+        arguments.add(new BasicNameValuePair("password", "4"));
         BufferedInputStream i = sendPost(arguments, "http://localhost:8080/getUsersList");
         if(i == null){
             Assert.fail("NullPointerException");
@@ -67,6 +68,47 @@ public class TestServlets {
             String str = new String(b);
             str = str.trim();
             Assert.assertEquals(str,"{\"1\":\"newCanvas\",\"2\":\"Новый Канвас\"}");
+        } catch (IOException e) {
+            e.printStackTrace();
+            Assert.fail("Validation error");
+        }
+    }
+    @Test
+    public void getUsersListForAdmin(){
+        List<NameValuePair> arguments = new ArrayList<>(3);
+        arguments.add(new BasicNameValuePair("login", "admin"));
+        arguments.add(new BasicNameValuePair("password", "admin"));
+        arguments.add(new BasicNameValuePair("id", "1"));
+        BufferedInputStream i = sendPost(arguments, "http://localhost:8080/getUsersList");
+        if(i == null){
+            Assert.fail("NullPointerException");
+        }
+        byte[] b = new byte[1024];
+        try {
+            i.read(b);
+            String str = new String(b);
+            str = str.trim();
+            Assert.assertEquals(str,"");
+        } catch (IOException e) {
+            e.printStackTrace();
+            Assert.fail("Validation error");
+        }
+    }
+    @Test
+    public void getUsersForAdmin(){
+        List<NameValuePair> arguments = new ArrayList<>(2);
+        arguments.add(new BasicNameValuePair("login", "admin"));
+        arguments.add(new BasicNameValuePair("password", "admin"));
+        BufferedInputStream i = sendPost(arguments, "http://localhost:8080/getUsers");
+        if(i == null){
+            Assert.fail("NullPointerException");
+        }
+        byte[] b = new byte[1024];
+        try {
+            i.read(b);
+            String str = new String(b);
+            str = str.trim();
+            Assert.assertEquals(str,"");
         } catch (IOException e) {
             e.printStackTrace();
             Assert.fail("Validation error");

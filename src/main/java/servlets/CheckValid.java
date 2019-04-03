@@ -27,6 +27,7 @@ public class CheckValid extends HttpServlet {
             if(resultSet.next()){
                 System.out.println(resultSet.getInt("id"));
                 resp.getWriter().write(String.valueOf(resultSet.getInt("id")));
+                resp.getWriter().write(" "+resultSet.getInt("type"));
             }else {
                 resp.getWriter().write(String.valueOf(-1));
             }
