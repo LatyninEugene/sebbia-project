@@ -5,7 +5,6 @@
          version="3.0">
 
 
-
     <filter>
         <filter-name>SimpleCorsFilter</filter-name>
         <filter-class>model.SimpleCORSFilter</filter-class>
@@ -13,7 +12,11 @@
 
     <filter-mapping>
         <filter-name>SimpleCorsFilter</filter-name>
-        <url-pattern>/upload</url-pattern>
+        <url-pattern>/uploadPDF</url-pattern>
+    </filter-mapping>
+    <filter-mapping>
+        <filter-name>SimpleCorsFilter</filter-name>
+        <url-pattern>/uploadAscii</url-pattern>
     </filter-mapping>
     <filter-mapping>
         <filter-name>SimpleCorsFilter</filter-name>
@@ -57,7 +60,16 @@
     </servlet>
     <servlet-mapping>
         <servlet-name>pdfServlet</servlet-name>
-        <url-pattern>/upload</url-pattern>
+        <url-pattern>/uploadPDF</url-pattern>
+    </servlet-mapping>
+
+    <servlet>
+        <servlet-name>asciiUpload</servlet-name>
+        <servlet-class>servlets.AsciiDocUpload</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>asciiUpload</servlet-name>
+        <url-pattern>/uploadAscii</url-pattern>
     </servlet-mapping>
 
     <servlet>

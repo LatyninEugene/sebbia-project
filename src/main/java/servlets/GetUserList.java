@@ -37,11 +37,17 @@ public class GetUserList extends HttpServlet {
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         String login = req.getParameter("login");
         String password = req.getParameter("password");
+        String myList = "";
+
+        try { myList = req.getParameter("myList").toUpperCase();
+        }catch (Exception e){}
+
         int id = CheckValid.isValid(login,password);
         if(id == -1){throw new ServletException();}
-        if (CheckValid.getType(id)==2){
+        if (CheckValid.getType(id) == 2 && myList.equals("FALSE")) {
             int id_user = Integer.parseInt(req.getParameter("id"));
             getCanvasList(req, resp, id_user);
+            return;
         }else getCanvasList(req, resp, id);
     }
 }

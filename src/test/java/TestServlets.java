@@ -31,7 +31,17 @@ public class TestServlets {
             return null;
         }
     }
-
+    private static void print(BufferedInputStream i){
+        byte[] b = new byte[1024];
+        try {
+            i.read(b);
+            String str = new String(b);
+            str = str.trim();
+            System.out.println(str);
+        } catch (IOException e) {
+            Assert.fail("Validation error");
+        }
+    }
     @Test
     public void checkValid(){
         List<NameValuePair> arguments = new ArrayList<>(2);
@@ -41,17 +51,7 @@ public class TestServlets {
         if(i == null){
             Assert.fail("NullPointerException");
         }
-        byte[] b = new byte[12];
-        try {
-            i.read(b,0,12);
-            String str = new String(b);
-            str = str.trim();
-            System.out.println(str);
-            Assert.assertEquals(str,"1 2");
-        } catch (IOException e) {
-            e.printStackTrace();
-            Assert.fail("Validation error");
-        }
+        print(i);
     }
     @Test
     public void getUsersList(){
@@ -62,37 +62,31 @@ public class TestServlets {
         if(i == null){
             Assert.fail("NullPointerException");
         }
-        byte[] b = new byte[1024];
-        try {
-            i.read(b);
-            String str = new String(b);
-            str = str.trim();
-            Assert.assertEquals(str,"{\"1\":\"newCanvas\",\"2\":\"ÕÓ‚˚È  ‡Ì‚‡Ò\"}");
-        } catch (IOException e) {
-            e.printStackTrace();
-            Assert.fail("Validation error");
+        print(i);
+    }
+    @Test
+    public void getUsersListForAdminMyList(){
+        List<NameValuePair> arguments = new ArrayList<>(3);
+        arguments.add(new BasicNameValuePair("login", "admin"));
+        arguments.add(new BasicNameValuePair("password", "admin"));
+        BufferedInputStream i = sendPost(arguments, "http://localhost:8080/getUsersList");
+        if(i == null){
+            Assert.fail("NullPointerException");
         }
+        print(i);
     }
     @Test
     public void getUsersListForAdmin(){
         List<NameValuePair> arguments = new ArrayList<>(3);
         arguments.add(new BasicNameValuePair("login", "admin"));
         arguments.add(new BasicNameValuePair("password", "admin"));
-        arguments.add(new BasicNameValuePair("id", "1"));
+        arguments.add(new BasicNameValuePair("id", "5"));
+        arguments.add(new BasicNameValuePair("myList", "False"));
         BufferedInputStream i = sendPost(arguments, "http://localhost:8080/getUsersList");
         if(i == null){
             Assert.fail("NullPointerException");
         }
-        byte[] b = new byte[1024];
-        try {
-            i.read(b);
-            String str = new String(b);
-            str = str.trim();
-            Assert.assertEquals(str,"");
-        } catch (IOException e) {
-            e.printStackTrace();
-            Assert.fail("Validation error");
-        }
+        print(i);
     }
     @Test
     public void getUsersForAdmin(){
@@ -103,16 +97,7 @@ public class TestServlets {
         if(i == null){
             Assert.fail("NullPointerException");
         }
-        byte[] b = new byte[1024];
-        try {
-            i.read(b);
-            String str = new String(b);
-            str = str.trim();
-            Assert.assertEquals(str,"");
-        } catch (IOException e) {
-            e.printStackTrace();
-            Assert.fail("Validation error");
-        }
+        print(i);
     }
     @Test
     public void getCanvas(){
@@ -122,24 +107,6 @@ public class TestServlets {
         if(i == null){
             Assert.fail("NullPointerException");
         }
-        byte[] b = new byte[1024];
-        try {
-            i.read(b);
-            String str = new String(b);
-            str = str.trim();
-            String str1 = "{\"name\":\"canvas\"," +
-                    "\"blocks\":{\"b0\":[\"Œœ¿—Õ€≈ »ƒ≈»\",\"\"]," +
-                        "\"b1\":[\"œŒ◊≈Ã”? / «¿◊≈Ã?\",\"\"]," +
-                        "\"b2\":[\" ŒÕ“≈ —“Õ€≈ —»“”¿÷»»\",\"\"]," +
-                        "\"b3\":[\"œ–Œ¡À≈Ã€\",\"\"],\"b4\":[\"÷≈ÕÕŒ—“‹\",\"\"]," +
-                        "\"b5\":[\"¬Œ«ÃŒ∆ÕŒ—“»\",\"\"],\"b6\":[\"Œ√–¿Õ»◊≈Õ»ﬂ\",\"\"]}," +
-                    "\"bloksPos\":{\"b0\":[1,1,1,1],\"b1\":[2,1,2,1],\"b2\":[3,1,1,1]," +
-                        "\"b3\":[1,2,2,1],\"b4\":[3,2,1,1],\"b5\":[2,3,1,1]," +
-                        "\"b6\":[3,3,1,1]},\"x\":3,\"y\":3}";
-            Assert.assertEquals(str,str1);
-        } catch (IOException e) {
-            e.printStackTrace();
-            Assert.fail("Validation error");
-        }
+        print(i);
     }
 }

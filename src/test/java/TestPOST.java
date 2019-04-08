@@ -23,7 +23,7 @@ public class TestPOST {
 
         CloseableHttpClient client = HttpClients.createDefault();
 //        HttpPost post = new HttpPost("https://sebbia-project.herokuapp.com/upload");
-        HttpPost post = new HttpPost("http://localhost:8080/upload");
+        HttpPost post = new HttpPost("http://localhost:8080/uploadPDF");
 
         try {
             List<NameValuePair> arguments = new ArrayList<>(1);

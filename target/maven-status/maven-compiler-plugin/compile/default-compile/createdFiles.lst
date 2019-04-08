@@ -1,12 +1,17 @@
 controlers\JDBCUtil.class
 servlets\CanvasUpdate.class
 servlets\PDFUpload.class
+servlets\AsciiDocUpload.class
 servlets\CreateUser.class
 servlets\GetCanvas.class
+servlets\CheckValid.class
 servlets\CreateCanvas.class
 controlers\GeneratePDF.class
+servlets\GetUsers.class
 model\SimpleCORSFilter.class
 model\Canvas.class
 controlers\CheckValid.class
 servlets\GetUserList.class
+servlets\DeleteCanvas.class
+controlers\GenerateAsciiDoc.class
 model\User.class
