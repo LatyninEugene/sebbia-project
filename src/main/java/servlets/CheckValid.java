@@ -20,12 +20,12 @@ public class CheckValid extends HttpServlet {
         String password = req.getParameter("password");
 
         try(Connection con = JDBCUtil.getConnection()){
+
             PreparedStatement ps = con.prepareStatement("select * from \"User\" where login=? and password=?");
             ps.setString(1,login);
             ps.setString(2,password);
             ResultSet resultSet = ps.executeQuery();
             if(resultSet.next()){
-                System.out.println(resultSet.getInt("id"));
                 resp.getWriter().write(String.valueOf(resultSet.getInt("id")));
                 resp.getWriter().write(" "+resultSet.getInt("type"));
             }else {

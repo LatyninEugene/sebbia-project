@@ -6,7 +6,7 @@ import java.util.TreeMap;
 public class Canvas {
     private String name;
     private Map<String, String[]> blocks;
-    private Map<String, int[]> bloksPos;
+    private Map<String, int[]> blocksPosition;
     private int x;
     private int y;
 
@@ -14,7 +14,7 @@ public class Canvas {
     public Canvas() {
         name = "";
         blocks = new TreeMap<>();
-        bloksPos = new TreeMap<>();
+        blocksPosition = new TreeMap<>();
         x = 0;
         y = 0;
     }
@@ -22,7 +22,7 @@ public class Canvas {
     public Canvas(String name, Map<String, String[]> blocks, Map<String, int[]> bloksPos, int x, int y) {
         this.name = name;
         this.blocks = blocks;
-        this.bloksPos =bloksPos;
+        this.blocksPosition =bloksPos;
         this.x = x;
         this.y = y;
     }
@@ -43,11 +43,11 @@ public class Canvas {
         this.blocks = blocks;
     }
     public Map<String, int[]> getBloksPos() {
-        return bloksPos;
+        return blocksPosition;
     }
 
     public void setBloksPos(Map<String, int[]> bloksPos) {
-        this.bloksPos = bloksPos;
+        this.blocksPosition = bloksPos;
     }
 
     public int getX() {

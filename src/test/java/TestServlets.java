@@ -11,10 +11,12 @@ import org.junit.Test;
 
 import java.io.*;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 public class TestServlets {
 
+    static int count = 0;
     private static BufferedInputStream sendPost(List<NameValuePair> arg, String url){
         try {
             CloseableHttpClient client = HttpClients.createDefault();
@@ -37,7 +39,11 @@ public class TestServlets {
             i.read(b);
             String str = new String(b);
             str = str.trim();
-            System.out.println(str);
+            FileWriter fw = new FileWriter(new File("log"),true);
+            fw.write(Thread.currentThread().getName()+" "+str+"\n");
+            fw.close();
+            count++;
+            System.out.println(count+" - "+Thread.currentThread().getName()+"-"+str);
         } catch (IOException e) {
             Assert.fail("Validation error");
         }
@@ -102,7 +108,7 @@ public class TestServlets {
     @Test
     public void getCanvas(){
         List<NameValuePair> arguments = new ArrayList<>(1);
-        arguments.add(new BasicNameValuePair("id", "6"));
+        arguments.add(new BasicNameValuePair("id", "1"));
         BufferedInputStream i = sendPost(arguments, "http://localhost:8080/getCanvas");
         if(i == null){
             Assert.fail("NullPointerException");

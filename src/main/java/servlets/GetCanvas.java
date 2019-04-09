@@ -27,7 +27,6 @@ public class GetCanvas extends HttpServlet {
             ResultSet resultSet = ps.executeQuery();
             while (resultSet.next()){
                 json = resultSet.getString("text");
-
             }
             resp.getWriter().print(json);
         } catch (SQLException | ClassNotFoundException e) {
