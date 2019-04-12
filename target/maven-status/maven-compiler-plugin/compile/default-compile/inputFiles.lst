@@ -1,6 +1,8 @@
+C:\javaEE\sebbia_project\back\src\main\java\model\TokenInfo.java
 C:\javaEE\sebbia_project\back\src\main\java\model\SimpleCORSFilter.java
 C:\javaEE\sebbia_project\back\src\main\java\controlers\GenerateAsciiDoc.java
 C:\javaEE\sebbia_project\back\src\main\java\servlets\CheckValid.java
+C:\javaEE\sebbia_project\back\src\main\java\controlers\AuthHelper.java
 C:\javaEE\sebbia_project\back\src\main\java\servlets\DeleteCanvas.java
 C:\javaEE\sebbia_project\back\src\main\java\model\User.java
 C:\javaEE\sebbia_project\back\src\main\java\servlets\AsciiDocUpload.java
@@ -13,5 +15,6 @@ C:\javaEE\sebbia_project\back\src\main\java\servlets\GetUsers.java
 C:\javaEE\sebbia_project\back\src\main\java\controlers\CheckValid.java
 C:\javaEE\sebbia_project\back\src\main\java\servlets\CreateUser.java
 C:\javaEE\sebbia_project\back\src\main\java\controlers\JDBCUtil.java
+C:\javaEE\sebbia_project\back\src\main\java\model\MyConnection.java
 C:\javaEE\sebbia_project\back\src\main\java\servlets\CreateCanvas.java
 C:\javaEE\sebbia_project\back\src\main\java\servlets\CanvasUpdate.java

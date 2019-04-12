@@ -5,7 +5,6 @@ import java.security.SignatureException;
 import java.util.Calendar;
 import java.util.List;
 
-import com.sun.deploy.util.StringUtils;
 import model.TokenInfo;
 import net.oauth.jsontoken.JsonToken;
 import net.oauth.jsontoken.JsonTokenParser;
