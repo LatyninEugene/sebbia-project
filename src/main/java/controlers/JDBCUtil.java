@@ -3,6 +3,8 @@ package controlers;
 
 import model.MyConnection;
 
+import java.io.Closeable;
+import java.io.IOException;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.SQLException;
@@ -15,13 +17,13 @@ public class JDBCUtil {
     private static final String USER = "sapfwipdxbakhf";
     private static final String PASSWORD = "5ee6ce59fcd1ea10672183dd1c2f9a5c268380a26f637cb25a6e482198febba6";
 
-    private static final BlockingQueue<Connection> connections = new ArrayBlockingQueue<Connection>(18);
+    private static final BlockingQueue<Connection> connections = new ArrayBlockingQueue<Connection>(15);
 
     static {
         try {
             System.out.println(connections.size());
             Class.forName("org.postgresql.Driver");
-            for (int i = 0; i < 18; i++) {
+            for (int i = 0; i < 15; i++) {
                 connections.add(new MyConnection(DriverManager.getConnection(URL,USER,PASSWORD)));
             }
         } catch (ClassNotFoundException | SQLException e) {
@@ -43,5 +45,8 @@ public class JDBCUtil {
     }
 
 
-
+    @Override
+    protected void finalize() throws Throwable {
+        System.out.println("i'am closed\n\n");
+    }
 }

@@ -67,6 +67,7 @@ public class TestServlets {
             e.printStackTrace();
         }
         TOKEN = new String(b);
+        System.out.println(TOKEN);
     }
     @Test
     public void getUsersList(){

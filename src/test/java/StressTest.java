@@ -27,6 +27,6 @@ public class StressTest extends Thread {
 
     @Override
     public void run() {
-        ts.getCanvas();
+        ts.checkValid();
     }
 }

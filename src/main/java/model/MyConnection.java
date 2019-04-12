@@ -55,6 +55,10 @@ public class MyConnection implements Connection {
     }
 
 
+    public void closeThis() throws SQLException {
+        con.close();
+    }
+
     //Возвращает connection обратно в pool;
     @Override
     public void close() throws SQLException {
