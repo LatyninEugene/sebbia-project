@@ -3,12 +3,17 @@ package model;
 public class User {
     private int id;
     private String login;
-    private String password;
+    private int type;
 
-    public User(int id, String login, String password) {
+    public User(int id, String login, int type) {
         this.id = id;
         this.login = login;
-        this.password = password;
+        this.type = type;
+    }
+
+    public User(TokenInfo token){
+        this.id = Integer.parseInt(token.getUserId());
+        this.type = Integer.parseInt(token.getUserType());
     }
 
     public int getId() {
@@ -27,11 +32,11 @@ public class User {
         this.login = login;
     }
 
-    public String getPassword() {
-        return password;
+    public int getType() {
+        return type;
     }
 
-    public void setPassword(String password) {
-        this.password = password;
+    public void setType(int type) {
+        this.type = type;
     }
 }

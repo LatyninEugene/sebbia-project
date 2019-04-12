@@ -1,7 +1,9 @@
 package servlets;
 
+import controlers.AuthHelper;
 import controlers.CheckValid;
 import controlers.JDBCUtil;
+import model.TokenInfo;
 
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
@@ -16,16 +18,14 @@ public class DeleteCanvas extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         int id = Integer.parseInt(req.getParameter("id"));
-        String login = req.getParameter("login");
-        String password = req.getParameter("password");
+        String token = req.getParameter("token");
 
-        int user_id = CheckValid.isValid(login,password);
-        if(user_id == -1)throw new ServletException();
+        TokenInfo tokenInfo = AuthHelper.verifyToken(token);
 
         try(Connection con = JDBCUtil.getConnection()){
             PreparedStatement ps = con.prepareStatement("DELETE from \"Canvas\" where id=? and id_user=?");
             ps.setInt(1,id);
-            ps.setInt(2,user_id);
+            ps.setInt(2, Integer.parseInt(tokenInfo.getUserId()));
             ps.executeUpdate();
         } catch (SQLException | ClassNotFoundException e) {
             throw new ServletException();

@@ -1,6 +1,8 @@
 package servlets;
 
+import controlers.AuthHelper;
 import controlers.JDBCUtil;
+import model.TokenInfo;
 
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
@@ -19,6 +21,9 @@ public class GetCanvas extends HttpServlet {
     @Override
     protected void service(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         int id = Integer.parseInt(req.getParameter("id"));
+        String token = req.getParameter("token");
+
+        TokenInfo tokenInfo = AuthHelper.verifyToken(token);
 
         try(Connection con = JDBCUtil.getConnection()){
             PreparedStatement ps = con.prepareStatement("SELECT * FROM \"Canvas\" WHERE id=?");

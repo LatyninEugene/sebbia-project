@@ -1,7 +1,9 @@
 package servlets;
 
+import controlers.AuthHelper;
 import controlers.CheckValid;
 import controlers.JDBCUtil;
+import model.TokenInfo;
 
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
@@ -18,22 +20,18 @@ public class CreateCanvas extends HttpServlet {
 
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        String login = req.getParameter("login");
-        String password = req.getParameter("password");
+        String token = req.getParameter("token");
         String name = req.getParameter("name");
         int type = Integer.parseInt(req.getParameter("type"));
 
-
-
-        int id = CheckValid.isValid(login,password);
-        if(id == -1){throw  new ServletException();}
+        TokenInfo tokenInfo = AuthHelper.verifyToken(token);
 
         try(Connection con = JDBCUtil.getConnection()){
             defCanvas = getDefCanvas(con,type);
             PreparedStatement ps = con.prepareStatement("INSERT into \"Canvas\"(name,text,id_user) values(?,?,?)");
             ps.setString(1,name);
             ps.setString(2,defCanvas);
-            ps.setInt(3,id);
+            ps.setInt(3, Integer.parseInt(tokenInfo.getUserId()));
             ps.executeUpdate();
         } catch (SQLException | ClassNotFoundException e) {
             throw new ServletException();

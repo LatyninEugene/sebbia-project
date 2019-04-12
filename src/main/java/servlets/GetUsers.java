@@ -1,8 +1,10 @@
 package servlets;
 
 import com.google.gson.Gson;
+import controlers.AuthHelper;
 import controlers.CheckValid;
 import controlers.JDBCUtil;
+import model.TokenInfo;
 
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
@@ -20,11 +22,11 @@ public class GetUsers extends HttpServlet {
 
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        String login = req.getParameter("login");
-        String password = req.getParameter("password");
-        int id = CheckValid.isValid(login,password);
-        if(id == -1){throw new ServletException();}
-        if (CheckValid.getType(id)==2) {
+        String token = req.getParameter("token");
+
+        TokenInfo tokenInfo = AuthHelper.verifyToken(token);
+
+        if (Integer.parseInt(tokenInfo.getUserType())==2) {
             try (Connection con = JDBCUtil.getConnection()) {
                 Map<Integer, String> users = new TreeMap<>();
                 PreparedStatement ps = con.prepareStatement("SELECT * FROM \"User\" WHERE type=?");
