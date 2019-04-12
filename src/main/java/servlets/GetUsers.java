@@ -40,6 +40,6 @@ public class GetUsers extends HttpServlet {
                 e.printStackTrace();
             }
         }
-        else resp.getWriter().write("Ты не Админ");
+        else throw new ServletException();
     }
 }

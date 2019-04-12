@@ -3,34 +3,43 @@ package controlers;
 
 import model.MyConnection;
 
-import java.io.Closeable;
-import java.io.IOException;
+import java.io.*;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.SQLException;
+import java.util.Scanner;
 import java.util.concurrent.ArrayBlockingQueue;
 import java.util.concurrent.BlockingQueue;
 import java.util.concurrent.TimeUnit;
 
 public class JDBCUtil {
-    private static final String URL = "jdbc:postgresql://ec2-54-247-117-145.eu-west-1.compute.amazonaws.com:5432/ddbvlt6treu35e?ssl=true&sslfactory=org.postgresql.ssl.NonValidatingFactory";
-    private static final String USER = "sapfwipdxbakhf";
-    private static final String PASSWORD = "5ee6ce59fcd1ea10672183dd1c2f9a5c268380a26f637cb25a6e482198febba6";
+    private static String URL;
+    private static String USER;
+    private static String PASSWORD;
+    private static int poolSize;
 
-    private static final BlockingQueue<Connection> connections = new ArrayBlockingQueue<Connection>(15);
+    private static BlockingQueue<Connection> connections;
 
     static {
-        try {
+        File f = new File("config");
+        try(Scanner br = new Scanner(f)) {
+            URL = br.nextLine();
+            USER = br.nextLine();
+            PASSWORD = br.nextLine();
+            poolSize = Integer.parseInt(br.nextLine());
+            connections = new ArrayBlockingQueue<Connection>(poolSize);
             System.out.println(connections.size());
             Class.forName("org.postgresql.Driver");
-            for (int i = 0; i < 15; i++) {
+            for (int i = 0; i < poolSize; i++) {
                 connections.add(new MyConnection(DriverManager.getConnection(URL,USER,PASSWORD)));
             }
-        } catch (ClassNotFoundException | SQLException e) {
+        } catch (ClassNotFoundException | SQLException | IOException e) {
+            System.out.println("error");
             e.printStackTrace();
         }
     }
     public synchronized static Connection getConnection() throws ClassNotFoundException, SQLException {
+        System.out.println("get Connection");
         try {
             Connection connection = connections.poll(2,TimeUnit.SECONDS);
             return connection;
@@ -42,11 +51,5 @@ public class JDBCUtil {
 
     public static void putConnection(Connection con){
         connections.add(con);
-    }
-
-
-    @Override
-    protected void finalize() throws Throwable {
-        System.out.println("i'am closed\n\n");
     }
 }
