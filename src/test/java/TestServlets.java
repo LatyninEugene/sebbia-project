@@ -81,7 +81,7 @@ public class TestServlets {
     public void getUsersListForAdmin(){
         List<NameValuePair> arguments = new ArrayList<>(3);
         arguments.add(new BasicNameValuePair("token", TOKEN_ADMIN));
-        arguments.add(new BasicNameValuePair("id", "611"));
+        arguments.add(new BasicNameValuePair("id", "5"));
         arguments.add(new BasicNameValuePair("myList", "False"));
         BufferedInputStream i = sendPost(arguments, "http://localhost:8080/getUsersList");
         if(i == null){

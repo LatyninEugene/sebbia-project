@@ -45,7 +45,7 @@ public class GetUsers extends HttpServlet {
             }
         }
         else result = "NOT_ACCESS";
-        send="{\"json\":\""+json+"\",\"result\":\""+result+"\"}";
+        send="{\"json\":"+json+",\"result\":\""+result+"\"}";
         resp.getWriter().write(send);
     }
 }

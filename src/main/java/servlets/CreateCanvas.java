@@ -28,10 +28,11 @@ public class CreateCanvas extends HttpServlet {
 
         try(Connection con = JDBCUtil.getConnection()){
             defCanvas = getDefCanvas(con,type);
-            PreparedStatement ps = con.prepareStatement("INSERT into \"Canvas\"(name,text,id_user) values(?,?,?)");
+            PreparedStatement ps = con.prepareStatement("INSERT into \"Canvas\"(name,text,id_user,type) values(?,?,?,?)");
             ps.setString(1,name);
             ps.setString(2,defCanvas);
             ps.setInt(3, Integer.parseInt(tokenInfo.getUserId()));
+            ps.setInt(4, type);
             ps.executeUpdate();
         } catch (SQLException | ClassNotFoundException e) {
             throw new ServletException();

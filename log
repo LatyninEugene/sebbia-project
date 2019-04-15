@@ -34,3 +34,6 @@ main {"json":"{"231":["daw","Business canvas"],"234":["123","Not determined"]}",
 main {"accessToken":"eyJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJTZWJiaWErQ2FudmFzXHUwMDNkSXNzdWVyIiwiaWF0IjoxNTU1MzI0MjU0LCJleHAiOjE1NTU0OTcwNTQsImluZm8iOnsidXNlcklkIjoiMSIsInVzZXJUeXBlIjoiMiJ9fQ.pv_UtOcCOjzu3_P7sAJRvft492Pks0sQvBgAyRHADp4","role":"ADMIN","result":"SUCCESS"}
 main {"json":"","result":"NOT_ACCESS"}
 main {"json":"{}","result":"SUCCESS_FOR_ADMIN"}
+main {"canList":{},"result":"SUCCESS_FOR_ADMIN"}
+main {"canList":{},"result":"SUCCESS_FOR_ADMIN"}
+main {"listOfCanvases":{"231":["daw","Business canvas"],"234":["123","Not determined"]},"result":"SUCCESS_FOR_ADMIN"}

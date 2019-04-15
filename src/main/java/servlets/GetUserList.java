@@ -77,7 +77,7 @@ public class GetUserList extends HttpServlet {
             result = "ERROR";
         }
 
-        send="{\"json\":\""+json+"\",\"result\":\""+result+"\"}";
+        send="{\"json\":"+json+",\"result\":\""+result+"\"}";
         resp.getWriter().print(send);
     }
 }

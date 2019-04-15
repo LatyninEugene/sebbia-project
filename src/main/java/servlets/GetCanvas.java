@@ -54,7 +54,7 @@ public class GetCanvas extends HttpServlet {
         } catch (SQLException | ClassNotFoundException e) {
             result = "ERROR";
         }
-        send="{\"json\":\""+json+"\",\"result\":\""+result+"\"}";
+        send="{\"json\":"+json+",\"result\":\""+result+"\"}";
         resp.getWriter().print(send);
     }
 }
