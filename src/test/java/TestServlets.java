@@ -19,7 +19,8 @@ import java.util.List;
 public class TestServlets {
 
     static int count = 0;
-    private static String TOKEN;
+    private static String TOKEN_ADMIN = "eyJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJTZWJiaWErQ2FudmFzXHUwMDNkSXNzdWVyIiwiaWF0IjoxNTU1MzIzMTUwLCJleHAiOjE1NTU0OTU5NTAsImluZm8iOnsidXNlcklkIjoiMSIsInVzZXJUeXBlIjoiMiJ9fQ.5tKQ30W9LzHLo-RZ3e8Mx_1JK5CT1_VOgWTzDS7ZiHs";
+    private static String TOKEN_USER = "eyJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJTZWJiaWErQ2FudmFzXHUwMDNkSXNzdWVyIiwiaWF0IjoxNTU1MzIxNTM2LCJleHAiOjE1NTU0OTQzMzYsImluZm8iOnsidXNlcklkIjoiNSIsInVzZXJUeXBlIjoiMSJ9fQ.qu3Umv0B6SF0B4LoE14Pja-ut_fVV2pjPKSYveeBy-0";
 
     private static BufferedInputStream sendPost(List<NameValuePair> arg, String url){
         try {
@@ -38,7 +39,7 @@ public class TestServlets {
         }
     }
     private static void print(BufferedInputStream i){
-        byte[] b = new byte[1024];
+        byte[] b = new byte[2024];
         try {
             i.read(b);
             String str = new String(b);
@@ -62,20 +63,13 @@ public class TestServlets {
         if(i == null){
             Assert.fail("NullPointerException");
         }
-        byte[] b = new byte[1024];
-        try {
-            i.read(b);
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-        TOKEN = new String(b);
-        System.out.println(TOKEN);
+        print(i);
     }
     @Test
     @Ignore
     public void getUsersList(){
         List<NameValuePair> arguments = new ArrayList<>(1);
-        arguments.add(new BasicNameValuePair("token", TOKEN));
+        arguments.add(new BasicNameValuePair("token", TOKEN_USER));
         BufferedInputStream i = sendPost(arguments, "http://localhost:8080/getUsersList");
         if(i == null){
             Assert.fail("NullPointerException");
@@ -86,8 +80,8 @@ public class TestServlets {
     @Ignore
     public void getUsersListForAdmin(){
         List<NameValuePair> arguments = new ArrayList<>(3);
-        arguments.add(new BasicNameValuePair("token", TOKEN));
-        arguments.add(new BasicNameValuePair("id", "5"));
+        arguments.add(new BasicNameValuePair("token", TOKEN_ADMIN));
+        arguments.add(new BasicNameValuePair("id", "611"));
         arguments.add(new BasicNameValuePair("myList", "False"));
         BufferedInputStream i = sendPost(arguments, "http://localhost:8080/getUsersList");
         if(i == null){
@@ -99,7 +93,7 @@ public class TestServlets {
     @Ignore
     public void getUsersForAdmin(){
         List<NameValuePair> arguments = new ArrayList<>(2);
-        arguments.add(new BasicNameValuePair("token", TOKEN));
+        arguments.add(new BasicNameValuePair("token", TOKEN_USER));
         BufferedInputStream i = sendPost(arguments, "http://localhost:8080/getUsers");
         if(i == null){
             Assert.fail("NullPointerException");
@@ -110,8 +104,8 @@ public class TestServlets {
     @Ignore
     public void getCanvas(){
         List<NameValuePair> arguments = new ArrayList<>(2);
-        arguments.add(new BasicNameValuePair("token", TOKEN));
-        arguments.add(new BasicNameValuePair("id", "1"));
+        arguments.add(new BasicNameValuePair("token", TOKEN_USER));
+        arguments.add(new BasicNameValuePair("id", "206"));
         BufferedInputStream i = sendPost(arguments, "http://localhost:8080/getCanvas");
         if(i == null){
             Assert.fail("NullPointerException");

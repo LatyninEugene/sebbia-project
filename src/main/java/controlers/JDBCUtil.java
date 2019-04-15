@@ -39,7 +39,7 @@ public class JDBCUtil {
         }
     }
     public synchronized static Connection getConnection() throws ClassNotFoundException, SQLException {
-        System.out.println("get Connection");
+        System.out.println(Thread.currentThread().getName()+" get Connection");
         try {
             Connection connection = connections.poll(2,TimeUnit.SECONDS);
             return connection;
@@ -50,6 +50,7 @@ public class JDBCUtil {
     }
 
     public static void putConnection(Connection con){
+        System.out.println(Thread.currentThread().getName()+" put Connection");
         connections.add(con);
     }
 }

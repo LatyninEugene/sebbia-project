@@ -23,7 +23,10 @@ public class GetUsers extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         String token = req.getParameter("token");
-
+        String json = "";
+        String send;
+        String result;
+        Gson g = new Gson();
         TokenInfo tokenInfo = AuthHelper.verifyToken(token);
 
         if (Integer.parseInt(tokenInfo.getUserType())==2) {
@@ -35,11 +38,14 @@ public class GetUsers extends HttpServlet {
                 while (resultSet.next()) {
                     users.put(resultSet.getInt("id"), resultSet.getString("login"));
                 }
-                resp.getWriter().write(new Gson().toJson(users));
+                json = g.toJson(users);
+                result = "SUCCESS";
             } catch (SQLException | ClassNotFoundException e) {
-                e.printStackTrace();
+                result = "ERROR";
             }
         }
-        else throw new ServletException();
+        else result = "NOT_ACCESS";
+        send="{\"json\":\""+json+"\",\"result\":\""+result+"\"}";
+        resp.getWriter().write(send);
     }
 }

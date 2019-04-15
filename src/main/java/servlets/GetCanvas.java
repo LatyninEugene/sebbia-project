@@ -23,19 +23,38 @@ public class GetCanvas extends HttpServlet {
         int id = Integer.parseInt(req.getParameter("id"));
         String token = req.getParameter("token");
 
+        String result = "ERROR";
+        String json = "{}";
+        String send;
+
         TokenInfo tokenInfo = AuthHelper.verifyToken(token);
 
         try(Connection con = JDBCUtil.getConnection()){
             PreparedStatement ps = con.prepareStatement("SELECT * FROM \"Canvas\" WHERE id=?");
             ps.setInt(1,id);
-            String json = "{}";
+
             ResultSet resultSet = ps.executeQuery();
-            while (resultSet.next()){
-                json = resultSet.getString("text");
+            if (resultSet.next()){
+
+                int id_user = resultSet.getInt("id_user");
+                if(Integer.parseInt(tokenInfo.getUserId())==id_user){
+                    result = "SUCCESS";
+                    json = resultSet.getString("text");
+                }else if(Integer.parseInt(tokenInfo.getUserType())==2){
+                    result = "SUCCESS_FOR_ADMIN";
+                    json = resultSet.getString("text");
+                }else {
+                    json="{}";
+                    result = "NOT_ACCESS";
+                }
+            }else {
+                result = "CANVAS_NOT_FOUND";
             }
-            resp.getWriter().print(json);
+
         } catch (SQLException | ClassNotFoundException e) {
-            e.printStackTrace();
+            result = "ERROR";
         }
+        send="{\"json\":\""+json+"\",\"result\":\""+result+"\"}";
+        resp.getWriter().print(send);
     }
 }

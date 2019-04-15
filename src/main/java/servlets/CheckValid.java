@@ -1,7 +1,9 @@
 package servlets;
 
+import com.google.gson.Gson;
 import controlers.AuthHelper;
 import controlers.JDBCUtil;
+import model.AccessObject;
 
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
@@ -23,6 +25,9 @@ public class CheckValid extends HttpServlet {
     protected void service(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         String login = req.getParameter("login");
         String password = req.getParameter("password");
+        String token = "";
+        String role = "";
+        String result = "ERROR";
         try(Connection con = JDBCUtil.getConnection()){
             PreparedStatement ps = con.prepareStatement("select * from \"User\" where login=? and password=?");
             ps.setString(1,login);
@@ -31,12 +36,17 @@ public class CheckValid extends HttpServlet {
             if(resultSet.next()){
                 id = resultSet.getInt("id");
                 type = resultSet.getInt("type");
-                resp.getWriter().write(AuthHelper.createJsonWebToken(""+id,""+type,DAYS));
+                token  = AuthHelper.createJsonWebToken(""+id,""+type,DAYS);
+                if(type==1)role="USER";
+                else if(type==2)role="ADMIN";
+                result = "SUCCESS";
             }else {
-                throw new ServletException();
+                result = "USER_NOT_FOUND";
             }
         } catch (SQLException | ClassNotFoundException e) {
-            throw new ServletException();
         }
+        AccessObject ao = new AccessObject(token,role,result);
+        Gson g  = new Gson();
+        resp.getWriter().write(g.toJson(ao,AccessObject.class));
     }
 }
