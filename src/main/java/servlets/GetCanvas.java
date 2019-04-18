@@ -25,6 +25,7 @@ public class GetCanvas extends HttpServlet {
 
         String result = "ERROR";
         String json = "{}";
+        String name = "";
         String send;
 
         try(Connection con = JDBCUtil.getConnection()){
@@ -40,9 +41,11 @@ public class GetCanvas extends HttpServlet {
                 int id_user = resultSet.getInt("id_user");
                 if(Integer.parseInt(tokenInfo.getUserId())==id_user){
                     result = "SUCCESS";
+                    name = resultSet.getString("name");
                     json = resultSet.getString("text");
                 }else if(Integer.parseInt(tokenInfo.getUserType())==2){
                     result = "SUCCESS_FOR_ADMIN";
+                    name = resultSet.getString("name");
                     json = resultSet.getString("text");
                 }else {
                     json="{}";
@@ -55,7 +58,7 @@ public class GetCanvas extends HttpServlet {
         } catch (Exception e) {
             result = "ERROR";
         }
-        send="{\"json\":"+json+",\"result\":\""+result+"\"}";
+        send="{\"json\":"+json+",\"name\":\""+name+"\",\"result\":\""+result+"\"}";
         resp.getWriter().print(send);
     }
 }
