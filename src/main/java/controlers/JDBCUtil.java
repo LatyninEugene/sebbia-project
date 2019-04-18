@@ -13,28 +13,22 @@ import java.util.concurrent.BlockingQueue;
 import java.util.concurrent.TimeUnit;
 
 public class JDBCUtil {
-    private static String URL;
-    private static String USER;
-    private static String PASSWORD;
-    private static int poolSize;
+    private static String URL = "jdbc:postgresql://ec2-54-247-117-145.eu-west-1.compute.amazonaws.com:5432/ddbvlt6treu35e?ssl=true&sslfactory=org.postgresql.ssl.NonValidatingFactory";
+    private static String USER = "sapfwipdxbakhf";
+    private static String PASSWORD = "5ee6ce59fcd1ea10672183dd1c2f9a5c268380a26f637cb25a6e482198febba6";
+    private static int poolSize = 5;
 
     private static BlockingQueue<Connection> connections;
 
     static {
-        File f = new File("config");
-        try(Scanner br = new Scanner(f)) {
-            URL = br.nextLine();
-            USER = br.nextLine();
-            PASSWORD = br.nextLine();
-            poolSize = Integer.parseInt(br.nextLine());
-            connections = new ArrayBlockingQueue<Connection>(poolSize);
+        try{
+            connections = new ArrayBlockingQueue<>(poolSize);
             System.out.println(connections.size());
             Class.forName("org.postgresql.Driver");
             for (int i = 0; i < poolSize; i++) {
                 connections.add(new MyConnection(DriverManager.getConnection(URL,USER,PASSWORD)));
             }
-        } catch (ClassNotFoundException | SQLException | IOException e) {
-            System.out.println("error");
+        } catch (ClassNotFoundException | SQLException e) {
             e.printStackTrace();
         }
     }

@@ -23,7 +23,7 @@ public class GetUsers extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         String token = req.getParameter("token");
-        String json = "";
+        String json = "{}";
         String send;
         String result;
         Gson g = new Gson();

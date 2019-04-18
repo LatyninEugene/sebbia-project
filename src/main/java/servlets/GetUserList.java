@@ -52,7 +52,7 @@ public class GetUserList extends HttpServlet {
         String token = req.getParameter("token");
         Map<Integer,String[]> canList;
         String myList = "";
-        String json = "";
+        String json = "{}";
         String result;
         String send;
         Gson g = new Gson();
