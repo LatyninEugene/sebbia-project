@@ -27,9 +27,10 @@ public class GetCanvas extends HttpServlet {
         String json = "{}";
         String send;
 
-        TokenInfo tokenInfo = AuthHelper.verifyToken(token);
-
         try(Connection con = JDBCUtil.getConnection()){
+            TokenInfo tokenInfo = AuthHelper.verifyToken(token);
+
+
             PreparedStatement ps = con.prepareStatement("SELECT * FROM \"Canvas\" WHERE id=?");
             ps.setInt(1,id);
 
@@ -51,7 +52,7 @@ public class GetCanvas extends HttpServlet {
                 result = "CANVAS_NOT_FOUND";
             }
 
-        } catch (SQLException | ClassNotFoundException e) {
+        } catch (Exception e) {
             result = "ERROR";
         }
         send="{\"json\":"+json+",\"result\":\""+result+"\"}";

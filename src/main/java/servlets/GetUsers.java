@@ -27,24 +27,24 @@ public class GetUsers extends HttpServlet {
         String send;
         String result;
         Gson g = new Gson();
-        TokenInfo tokenInfo = AuthHelper.verifyToken(token);
+        try (Connection con = JDBCUtil.getConnection()) {
+            TokenInfo tokenInfo = AuthHelper.verifyToken(token);
+            if (Integer.parseInt(tokenInfo.getUserType())==2) {
 
-        if (Integer.parseInt(tokenInfo.getUserType())==2) {
-            try (Connection con = JDBCUtil.getConnection()) {
-                Map<Integer, String> users = new TreeMap<>();
-                PreparedStatement ps = con.prepareStatement("SELECT * FROM \"User\" WHERE type=?");
-                ps.setInt(1, 1);
-                ResultSet resultSet = ps.executeQuery();
-                while (resultSet.next()) {
-                    users.put(resultSet.getInt("id"), resultSet.getString("login"));
-                }
-                json = g.toJson(users);
-                result = "SUCCESS";
-            } catch (SQLException | ClassNotFoundException e) {
-                result = "ERROR";
-            }
+                    Map<Integer, String> users = new TreeMap<>();
+                    PreparedStatement ps = con.prepareStatement("SELECT * FROM \"User\" WHERE type=?");
+                    ps.setInt(1, 1);
+                    ResultSet resultSet = ps.executeQuery();
+                    while (resultSet.next()) {
+                        users.put(resultSet.getInt("id"), resultSet.getString("login"));
+                    }
+                    json = g.toJson(users);
+                    result = "SUCCESS";
+                } else result = "NOT_ACCESS";
+        } catch (Exception e) {
+            result = "ERROR";
         }
-        else result = "NOT_ACCESS";
+
         send="{\"json\":"+json+",\"result\":\""+result+"\"}";
         resp.getWriter().write(send);
     }

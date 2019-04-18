@@ -21,16 +21,23 @@ public class JDBCUtil {
     private static BlockingQueue<Connection> connections;
 
     static {
-        try{
-            connections = new ArrayBlockingQueue<>(poolSize);
+        File f = new File("config");
+        try(Scanner br = new Scanner(f)) {
+            URL = br.nextLine();
+            USER = br.nextLine();
+            PASSWORD = br.nextLine();
+            poolSize = Integer.parseInt(br.nextLine());
+            connections = new ArrayBlockingQueue<Connection>(poolSize);
             System.out.println(connections.size());
             Class.forName("org.postgresql.Driver");
             for (int i = 0; i < poolSize; i++) {
                 connections.add(new MyConnection(DriverManager.getConnection(URL,USER,PASSWORD)));
             }
-        } catch (ClassNotFoundException | SQLException e) {
+        } catch (ClassNotFoundException | SQLException | IOException e) {
+            System.out.println("error");
             e.printStackTrace();
         }
+
     }
     public synchronized static Connection getConnection() throws ClassNotFoundException, SQLException {
         System.out.println(Thread.currentThread().getName()+" get Connection");
