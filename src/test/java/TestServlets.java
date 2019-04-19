@@ -22,8 +22,8 @@ public class TestServlets {
     private static String TOKEN_ADMIN = "eyJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJTZWJiaWErQ2FudmFzXHUwMDNkSXNzdWVyIiwiaWF0IjoxNTU1NjcwMDUzLCJleHAiOjE1NTU4NDI4NTMsImluZm8iOnsidXNlcklkIjoiMSIsInVzZXJUeXBlIjoiMiJ9fQ.XQdyQFhtsBsRHBEMj23owGVRwOIUus0XdymZdQWfh4U";
     private static String TOKEN_USER = "eyJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJTZWJiaWErQ2FudmFzXHUwMDNkSXNzdWVyIiwiaWF0IjoxNTU1MzIxNTM2LCJleHAiOjE1NTU0OTQzMzYsImluZm8iOnsidXNlcklkIjoiNSIsInVzZXJUeXBlIjoiMSJ9fQ.qu3Umv0B6SF0B4LoE14Pja-ut_fVV2pjPKSYveeBy-0";
 
-    private static final String URLB = "http://localhost:8090/";
-    private static final String URL = "http://192.168.99.100:8080/";
+    private static final String URL = "http://localhost:8090/";
+    private static final String URLB = "http://192.168.99.100:8080/";
     private static BufferedInputStream sendPost(List<NameValuePair> arg, String url){
         try {
             CloseableHttpClient client = HttpClients.createDefault();
@@ -83,7 +83,7 @@ public class TestServlets {
     public void getUsersListForAdmin(){
         List<NameValuePair> arguments = new ArrayList<>(3);
         arguments.add(new BasicNameValuePair("token", TOKEN_ADMIN));
-        arguments.add(new BasicNameValuePair("id", "5"));
+        arguments.add(new BasicNameValuePair("id", "1"));
         arguments.add(new BasicNameValuePair("myList", "False"));
         BufferedInputStream i = sendPost(arguments, URL+"getUsersList");
         if(i == null){
@@ -95,7 +95,8 @@ public class TestServlets {
     @Ignore
     public void getUsersForAdmin(){
         List<NameValuePair> arguments = new ArrayList<>(2);
-        arguments.add(new BasicNameValuePair("token", TOKEN_USER));
+        arguments.add(new BasicNameValuePair("token", TOKEN_ADMIN));
+        arguments.add(new BasicNameValuePair("page", "47"));
         BufferedInputStream i = sendPost(arguments, URL+"getUsers");
         if(i == null){
             Assert.fail("NullPointerException");
