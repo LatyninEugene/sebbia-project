@@ -1,7 +1,6 @@
 package servlets;
 
 import controlers.AuthHelper;
-import controlers.CheckValid;
 import controlers.JDBCUtil;
 import model.TokenInfo;
 

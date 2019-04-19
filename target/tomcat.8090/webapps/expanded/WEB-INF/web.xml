@@ -1,0 +1,145 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<web-app xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xmlns="http://java.sun.com/xml/ns/javaee"
+         xsi:schemaLocation="http://java.sun.com/xml/ns/javaee http://java.sun.com/xml/ns/javaee/web-app_3_0.xsd"
+         version="3.0">
+
+
+    <filter>
+        <filter-name>SimpleCorsFilter</filter-name>
+        <filter-class>model.SimpleCORSFilter</filter-class>
+    </filter>
+
+    <filter-mapping>
+        <filter-name>SimpleCorsFilter</filter-name>
+        <url-pattern>/uploadPDF</url-pattern>
+    </filter-mapping>
+    <filter-mapping>
+        <filter-name>SimpleCorsFilter</filter-name>
+        <url-pattern>/uploadAscii</url-pattern>
+    </filter-mapping>
+    <filter-mapping>
+        <filter-name>SimpleCorsFilter</filter-name>
+        <url-pattern>/getUsersList</url-pattern>
+    </filter-mapping>
+    <filter-mapping>
+        <filter-name>SimpleCorsFilter</filter-name>
+        <url-pattern>/getCanvas</url-pattern>
+    </filter-mapping>
+    <filter-mapping>
+        <filter-name>SimpleCorsFilter</filter-name>
+        <url-pattern>/createCanvas</url-pattern>
+    </filter-mapping>
+    <filter-mapping>
+        <filter-name>SimpleCorsFilter</filter-name>
+        <url-pattern>/createUser</url-pattern>
+    </filter-mapping>
+    <filter-mapping>
+        <filter-name>SimpleCorsFilter</filter-name>
+        <url-pattern>/updateCanvas</url-pattern>
+    </filter-mapping>
+    <filter-mapping>
+        <filter-name>SimpleCorsFilter</filter-name>
+        <url-pattern>/checkValid</url-pattern>
+    </filter-mapping>
+    <filter-mapping>
+        <filter-name>SimpleCorsFilter</filter-name>
+        <url-pattern>/deleteCanvas</url-pattern>
+    </filter-mapping>
+    <filter-mapping>
+        <filter-name>SimpleCorsFilter</filter-name>
+        <url-pattern>/getUsers</url-pattern>
+    </filter-mapping>
+
+
+
+    <servlet>
+        <servlet-name>pdfServlet</servlet-name>
+        <servlet-class>servlets.PDFUpload</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>pdfServlet</servlet-name>
+        <url-pattern>/uploadPDF</url-pattern>
+    </servlet-mapping>
+
+    <servlet>
+        <servlet-name>asciiUpload</servlet-name>
+        <servlet-class>servlets.AsciiDocUpload</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>asciiUpload</servlet-name>
+        <url-pattern>/uploadAscii</url-pattern>
+    </servlet-mapping>
+
+    <servlet>
+        <servlet-name>getUsersList</servlet-name>
+        <servlet-class>servlets.GetUserList</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>getUsersList</servlet-name>
+        <url-pattern>/getUsersList</url-pattern>
+    </servlet-mapping>
+
+    <servlet>
+        <servlet-name>getCanvas</servlet-name>
+        <servlet-class>servlets.GetCanvas</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>getCanvas</servlet-name>
+        <url-pattern>/getCanvas</url-pattern>
+    </servlet-mapping>
+
+    <servlet>
+        <servlet-name>createCanvas</servlet-name>
+        <servlet-class>servlets.CreateCanvas</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>createCanvas</servlet-name>
+        <url-pattern>/createCanvas</url-pattern>
+    </servlet-mapping>
+
+    <servlet>
+        <servlet-name>createUser</servlet-name>
+        <servlet-class>servlets.CreateUser</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>createUser</servlet-name>
+        <url-pattern>/createUser</url-pattern>
+    </servlet-mapping>
+
+    <servlet>
+        <servlet-name>updateCanvas</servlet-name>
+        <servlet-class>servlets.CanvasUpdate</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>updateCanvas</servlet-name>
+        <url-pattern>/updateCanvas</url-pattern>
+    </servlet-mapping>
+
+    <servlet>
+        <servlet-name>checkValid</servlet-name>
+        <servlet-class>servlets.CheckValid</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>checkValid</servlet-name>
+        <url-pattern>/checkValid</url-pattern>
+    </servlet-mapping>
+
+    <servlet>
+        <servlet-name>deleteCanvas</servlet-name>
+        <servlet-class>servlets.DeleteCanvas</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>deleteCanvas</servlet-name>
+        <url-pattern>/deleteCanvas</url-pattern>
+    </servlet-mapping>
+
+    <servlet>
+        <servlet-name>getUsers</servlet-name>
+        <servlet-class>servlets.GetUsers</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>getUsers</servlet-name>
+        <url-pattern>/getUsers</url-pattern>
+    </servlet-mapping>
+</web-app>

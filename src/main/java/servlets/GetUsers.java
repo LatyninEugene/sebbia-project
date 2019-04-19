@@ -2,7 +2,6 @@ package servlets;
 
 import com.google.gson.Gson;
 import controlers.AuthHelper;
-import controlers.CheckValid;
 import controlers.JDBCUtil;
 import model.TokenInfo;
 
@@ -14,7 +13,6 @@ import java.io.IOException;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
-import java.sql.SQLException;
 import java.util.Map;
 import java.util.TreeMap;
 

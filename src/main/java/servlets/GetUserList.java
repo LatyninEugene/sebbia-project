@@ -2,7 +2,6 @@ package servlets;
 
 import com.google.gson.Gson;
 import controlers.AuthHelper;
-import controlers.CheckValid;
 import controlers.JDBCUtil;
 import model.TokenInfo;
 

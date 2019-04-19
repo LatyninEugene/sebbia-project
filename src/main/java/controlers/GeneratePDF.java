@@ -17,7 +17,7 @@ public class GeneratePDF {
 
 
 
-    public static File getPDF(String path, Canvas c) throws IOException, DocumentException, URISyntaxException {
+    public static File getPDF(String path, Canvas c,String name) throws IOException, DocumentException, URISyntaxException {
         File file = new File(path);
         try {
             BaseFont bf = BaseFont.createFont(GeneratePDF.class.getResource("../ariali.ttf").toString(),"windows-1251", BaseFont.EMBEDDED);
@@ -33,9 +33,9 @@ public class GeneratePDF {
 
             PdfPTable table = new PdfPTable(x);
             Font font = FontFactory.getFont(FontFactory.COURIER, 18, BaseColor.BLACK);
-            Chunk chunk = new Chunk(c.getName(), new Font(bf,18));
-            chunk.setLineHeight(12);
-            document.add(chunk);
+            Chunk chunkName = new Chunk(name, new Font(bf,18));
+            chunkName.setLineHeight(12);
+            document.add(chunkName);
             document.setMargins(64, 64, 8, 64);
             table.setWidthPercentage(100f);
             table.setSpacingBefore(12);

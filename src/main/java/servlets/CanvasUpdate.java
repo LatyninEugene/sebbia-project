@@ -1,10 +1,8 @@
 package servlets;
 
 import controlers.AuthHelper;
-import controlers.CheckValid;
 import controlers.JDBCUtil;
 import model.TokenInfo;
-import model.User;
 
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;

@@ -26,9 +26,10 @@ public class AsciiDocUpload extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         String json = req.getParameter("json");
+        String name = req.getParameter("name");
         System.out.println("Main:" + json);
         Canvas can = new Gson().fromJson(json, Canvas.class);
-        file = GenerateAsciiDoc.getAsciiDoc(can);
+        file = GenerateAsciiDoc.getAsciiDoc(can,name);
 
         ServletOutputStream outStream = resp.getOutputStream();
         ServletContext context = getServletConfig().getServletContext();

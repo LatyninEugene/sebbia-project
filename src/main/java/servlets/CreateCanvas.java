@@ -1,7 +1,6 @@
 package servlets;
 
 import controlers.AuthHelper;
-import controlers.CheckValid;
 import controlers.JDBCUtil;
 import model.TokenInfo;
 
@@ -39,7 +38,7 @@ public class CreateCanvas extends HttpServlet {
         }
     }
 
-    private String getDefCanvas(Connection con, int type) throws SQLException {
+    public static String getDefCanvas(Connection con, int type) throws SQLException {
         PreparedStatement ps = con.prepareStatement("SELECT * from \"Default_Canvas\" where id=?");
         ps.setInt(1,type);
         ResultSet resultSet = ps.executeQuery();

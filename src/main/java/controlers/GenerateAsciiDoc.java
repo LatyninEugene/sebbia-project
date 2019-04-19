@@ -8,10 +8,10 @@ import java.io.IOException;
 import java.util.Map;
 
 public class GenerateAsciiDoc {
-    public static File getAsciiDoc(Canvas can) throws IOException {
+    public static File getAsciiDoc(Canvas can,String name) throws IOException {
         File file = new File("asciiCanvas.adoc");
         FileWriter fw = new FileWriter(file);
-        fw.write("= "+can.getName()+"\n");
+        fw.write("= "+name+"\n");
         fw.write("\n");
         Map<String, String[]> blocks = can.getBloks();
         for (String k : blocks.keySet()) {

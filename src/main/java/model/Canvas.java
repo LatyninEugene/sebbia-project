@@ -4,7 +4,7 @@ import java.util.Map;
 import java.util.TreeMap;
 
 public class Canvas {
-    private String name;
+    private String typeName;
     private Map<String, String[]> blocks;
     private Map<String, int[]> blocksPosition;
     private int x;
@@ -12,27 +12,27 @@ public class Canvas {
 
 
     public Canvas() {
-        name = "";
+        typeName = "";
         blocks = new TreeMap<>();
         blocksPosition = new TreeMap<>();
         x = 0;
         y = 0;
     }
 
-    public Canvas(String name, Map<String, String[]> blocks, Map<String, int[]> bloksPos, int x, int y) {
-        this.name = name;
+    public Canvas(String typeName, Map<String, String[]> blocks, Map<String, int[]> bloksPos, int x, int y) {
+        this.typeName = typeName;
         this.blocks = blocks;
         this.blocksPosition =bloksPos;
         this.x = x;
         this.y = y;
     }
 
-    public String getName() {
-        return name;
+    public String getTypeName() {
+        return typeName;
     }
 
-    public void setName(String name) {
-        this.name = name;
+    public void setTypeName(String typeName) {
+        this.typeName = typeName;
     }
 
     public Map<String, String[]> getBloks() {
@@ -68,7 +68,7 @@ public class Canvas {
     @Override
     public String toString() {
         return "model.Canvas{" +
-                "name='" + name + '\'' +
+                "typeName='" + typeName + '\'' +
                 ", blocks=" + blocks +
                 '}';
     }

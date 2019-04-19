@@ -18,6 +18,5 @@ controlers\AuthHelper.class
 servlets\GetCanvas.class
 servlets\CheckValid.class
 model\TokenInfo.class
-controlers\CheckValid.class
 controlers\AuthHelper$2.class
 controlers\GenerateAsciiDoc.class

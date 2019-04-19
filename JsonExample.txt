@@ -1,5 +1,5 @@
 {
-    "name":"canvas",
+    "typeName":"canvas",
     "bloks":{
         "b1":["q1","t1"],
         "b2":["q2","t2","t2.1"],
